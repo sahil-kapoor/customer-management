@@ -14,13 +14,15 @@ import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import cn.javis.giada.customer.aspect.MessagePrinterManager;
 import cn.javis.giada.customer.service.MessagePrinter;
 
 @Configuration
-@EnableAspectJAutoProxy
 @ComponentScan
+@EnableAspectJAutoProxy
+@EnableTransactionManagement
 public class AppConfig {
     // @Bean
     // MessageService mockMessageService() {
@@ -38,7 +40,8 @@ public class AppConfig {
 
     @Bean
     JndiObjectFactoryBean createJndiObjectFactoryBean() {
-        JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
+        JndiObjectFactoryBean jndiObjectFactoryBean =
+                new JndiObjectFactoryBean();
         jndiObjectFactoryBean.setJndiName("/jdbc/javis");
         jndiObjectFactoryBean.setResourceRef(true);
         return jndiObjectFactoryBean;
@@ -54,8 +57,10 @@ public class AppConfig {
 
     @Bean
     AnnotationSessionFactoryBean createSessionFactory() {
-        AnnotationSessionFactoryBean sessionFactory = new AnnotationSessionFactoryBean();
-        sessionFactory.setDataSource(createJndiDataSourceLookup().getDataSource("/jdbc/javis"));
+        AnnotationSessionFactoryBean sessionFactory =
+                new AnnotationSessionFactoryBean();
+        sessionFactory.setDataSource(createJndiDataSourceLookup()
+                .getDataSource("/jdbc/javis"));
         sessionFactory.setPackagesToScan("cn.javis.giada.customer");
         Properties prop = new Properties();
         prop.put("dialect", "org.hibernate.dialect.Oracle10gDialect");
@@ -64,18 +69,25 @@ public class AppConfig {
 
     @Bean
     HibernateTransactionManager createHibernateTransactionManager() {
-        return new HibernateTransactionManager((SessionFactory) createSessionFactory());
+        HibernateTransactionManager transactionManager =
+                new HibernateTransactionManager();
+        transactionManager
+                .setSessionFactory((SessionFactory) createSessionFactory());
+        return transactionManager;
     }
 
     @Bean
-    PersistenceExceptionTranslationPostProcessor createPersistenceExceptionTranslationPostProcessor() {
+    PersistenceExceptionTranslationPostProcessor
+            createPersistenceExceptionTranslationPostProcessor() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext(AppConfig.class);
         MessagePrinter printer = context.getBean(MessagePrinter.class);
-        MessagePrinterManager manager = context.getBean(MessagePrinterManager.class);
+        MessagePrinterManager manager =
+                context.getBean(MessagePrinterManager.class);
         manager.listen();
         // ApplicationContext context = new
         // ClassPathXmlApplicationContext("applicationContext.xml");
