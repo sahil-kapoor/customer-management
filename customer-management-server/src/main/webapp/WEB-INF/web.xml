@@ -9,7 +9,7 @@
   <!-- ============= -->
   <!-- context-param -->
   <!-- ============= -->
-  <context-param>
+  <!-- <context-param>
     <param-name>contextClass</param-name>
     <param-value>
       org.springframework.web.context.support.AnnotationConfigWebApplicationContext
@@ -18,32 +18,32 @@
 
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>cn.javis.giada.customer.configure.JndiDataConfig</param-value>
-  </context-param>
+    <param-value>cn.javis.giada.customer.controller.ControllerConfig</param-value>
+  </context-param>-->
 
   <!-- ======== -->
   <!-- listener -->
   <!-- ======== -->
-  <listener>
+  <!--<listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+  </listener>-->
 
   <!-- ======= -->
   <!-- servlet -->
   <!-- ======= -->
-  <servlet>
+  <!--<servlet>
     <servlet-name>customerController</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
-  </servlet>
+  </servlet>-->
 
   <!-- =============== -->
   <!-- servlet-mapping -->
   <!-- =============== -->
-  <servlet-mapping>
+  <!--<servlet-mapping>
     <servlet-name>customerController</servlet-name>
     <url-pattern>/</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>-->
 
 
 </web-app>

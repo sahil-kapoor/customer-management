@@ -13,6 +13,7 @@ import cn.javis.giada.customer.service.interfaces.CustomerService;
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerQueryDao customerQueryDao;
+//    private BasicQueryDao<Customer> customerQueryDao;
 
     // public CustomerServiceImpl(CustomerQueryDao customerQueryDao) {
     // this.customerQueryDao = customerQueryDao;
