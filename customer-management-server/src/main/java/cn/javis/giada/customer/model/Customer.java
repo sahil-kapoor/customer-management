@@ -1,5 +1,12 @@
 package cn.javis.giada.customer.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+
+@Component
+@Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.INTERFACES)
 public class Customer {
     public enum Gender {
         female, male
@@ -9,8 +16,6 @@ public class Customer {
     private String name;
     private Gender gender;
     private int age;
-
-
 
     public void copy(Customer that) {
         this.id = that.id;

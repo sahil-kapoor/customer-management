@@ -13,7 +13,8 @@ import cn.javis.giada.customer.service.interfaces.CustomerService;
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerQueryDao customerQueryDao;
-//    private BasicQueryDao<Customer> customerQueryDao;
+
+    // private BasicQueryDao<Customer> customerQueryDao;
 
     // public CustomerServiceImpl(CustomerQueryDao customerQueryDao) {
     // this.customerQueryDao = customerQueryDao;
@@ -21,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     public void fetchCustomer(Customer customer) {
         List<Customer> results = customerQueryDao.query(customer);
-        if(!results.isEmpty()) {
+        if (!results.isEmpty()) {
             customer.copy(results.get(0));
         }
         System.out.println("fetchCustomer " + customer.getName());

@@ -34,7 +34,8 @@ public class CustomerQueryDao extends BasicQueryDao<Customer> {
     @Override
     protected RowMapper<Customer> mapRow() {
         return new RowMapper<Customer>() {
-            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
+            public Customer mapRow(ResultSet rs, int rowNum)
+                    throws SQLException {
                 Customer customer = new Customer();
                 customer.setId(rs.getString("id"));
                 customer.setName(rs.getString("name"));

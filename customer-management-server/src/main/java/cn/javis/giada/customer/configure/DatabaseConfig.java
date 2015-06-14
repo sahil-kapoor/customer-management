@@ -1,4 +1,4 @@
-package cn.javis.giada.customer.dao;
+package cn.javis.giada.customer.configure;
 
 import javax.naming.NamingException;
 
