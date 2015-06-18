@@ -13,11 +13,10 @@ import lombok.Setter;
 
 import org.hibernate.annotations.TypeDef;
 
-import cn.javis.apms.helper.PropertyMapper;
 import cn.javis.apms.repository.base.DateTimeUserType;
 
 @Entity
-@Table(name = "apms_employee")
+@Table(name = "myapms_employee")
 @NoArgsConstructor
 @TypeDef(defaultForType = LocalDate.class, name = "DateUserType", typeClass = DateTimeUserType.class)
 public class EmployeeProperty {
@@ -42,20 +41,18 @@ public class EmployeeProperty {
 
     @Getter
     @Setter
-    private DataType dataType;
+    private String name;
 
     @Getter
     @Setter
-    private String name;
-
     private String value;
 
-    public Object getValue() {
-        return PropertyMapper.deserialize(this.value, this.dataType);
-    }
-
-    public void setValue(Object value) {
-        this.value = PropertyMapper.serialize(value, this.dataType);
-    }
+//    public Object getValue() {
+//        return PropertyMapper.deserialize(this.value, this.dataType);
+//    }
+//
+//    public void setValue(Object value) {
+//        this.value = PropertyMapper.serialize(value, this.dataType);
+//    }
 
 }

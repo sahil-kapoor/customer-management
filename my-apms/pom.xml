@@ -48,6 +48,7 @@
     <hibernate.version>4.3.10.Final</hibernate.version>
     <jdbc.mysql.version>5.1.35</jdbc.mysql.version>
     <jackson.version>2.5.4</jackson.version>
+    <aspectJ.version>1.8.5</aspectJ.version>
   </properties>
 
 
@@ -89,13 +90,14 @@
       <version>${spring.version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-      <version>4.12</version>
-    </dependency>
 
+    <!-- AspectJ -->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectJ.version}</version>
+    </dependency>
+    
     <!-- Hibernate -->
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -168,6 +170,12 @@
       <version>1.19.3</version>
     </dependency>
 
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+      <version>4.12</version>
+    </dependency>
   </dependencies>
 
 </project>

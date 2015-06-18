@@ -1,12 +1,10 @@
 package cn.javis.apms.repository.base;
 
 import java.io.Serializable;
-import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +20,7 @@ public abstract class HibernateBaseRepository<E, P extends Serializable> impleme
     }
 
     public Session currentSession() {
-        return sessionFactory.getCurrentSession();
+        return sessionFactory.openSession();
     }
 
     @Override
@@ -52,17 +50,10 @@ public abstract class HibernateBaseRepository<E, P extends Serializable> impleme
         currentSession().delete(entity);
     }
 
-    @Transactional(readOnly = true)
-    protected List<E> findByField(String fieldName, Object value) {
-        return findByFieldWithQuery(entityClass, fieldName, value);
+    public Criteria createCriteria() {
+        Criteria criteria = currentSession().createCriteria(entityClass);
+        criteria.setCacheable(false).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        return criteria;
     }
 
-    @SuppressWarnings("unchecked")
-    @Transactional(readOnly = true)
-    private List<E> findByFieldWithQuery(Class<? extends E> clazz, String fieldName, Object value) {
-        Criteria criteria = currentSession().createCriteria(clazz);
-        criteria.setCacheable(false).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        criteria.add(Restrictions.eq(fieldName, value));
-        return criteria.list();
-    }
 }

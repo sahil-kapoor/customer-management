@@ -1,26 +1,31 @@
 package cn.javis.apms.domain.property;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import cn.javis.apms.LocalDateSerializer;
+import cn.javis.apms.domain.DataType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Data
-@AllArgsConstructor
-public class PropertyValue implements Comparable<PropertyValue> {
+public class PropertyValue<E> implements Comparable<PropertyValue> {
 
     @JsonIgnore
     private static final LocalDate INFINITE_FUTURE = LocalDate.MAX;
     @JsonIgnore
     private static final LocalDate INFINITE_PAST = LocalDate.MIN;
 
-    private Long id;
+//    private Long id;
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate startDate = INFINITE_FUTURE;
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate endDate = INFINITE_PAST;
-    private Object value;
+
+    @JsonIgnore
+    private DataType targetDataType; // used for money converter, currently not used.   
+    private E value;
 
     public boolean within(LocalDate date) {
         return date.compareTo(startDate) >= 0
@@ -39,4 +44,5 @@ public class PropertyValue implements Comparable<PropertyValue> {
         }
         return startCompare;
     }
+
 }

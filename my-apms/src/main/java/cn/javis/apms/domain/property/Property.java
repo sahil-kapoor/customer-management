@@ -11,13 +11,11 @@ import lombok.Data;
 @AllArgsConstructor
 public class Property {
     private String propertyName;
-    private List<PropertyValue> valueList = new ArrayList<PropertyValue>();
-
-
+    private List<PropertyValue<?>> valueList = new ArrayList<PropertyValue<?>>();
 
     public Object valueAt(LocalDate date) {
-        for (PropertyValue propertyValue : valueList) {
-            if (propertyValue.within(date)){ 
+        for (PropertyValue<?> propertyValue : valueList) {
+            if (propertyValue.within(date)) {
                 return propertyValue.getValue();
             }
         }
@@ -26,7 +24,7 @@ public class Property {
 
     public List<Object> value(LocalDate startDate, LocalDate endDate) {
         List<Object> values = new ArrayList<Object>();
-        for (PropertyValue propertyValue : valueList) {
+        for (PropertyValue<?> propertyValue : valueList) {
             if (propertyValue.within(startDate, endDate)) {
                 values.add(propertyValue);
             }
