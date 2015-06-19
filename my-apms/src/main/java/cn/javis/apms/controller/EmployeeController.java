@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.javis.apms.domain.property.Property;
-import cn.javis.apms.service.EmployeeService;
+import cn.javis.apms.service.EmployeePropertyService;
 import cn.javis.apms.service.PropertyDefinitionService;
 import cn.javis.apms.service.exception.PropertyDefinitionNotFoundException;
 
@@ -18,10 +18,13 @@ import cn.javis.apms.service.exception.PropertyDefinitionNotFoundException;
 @RequestMapping(value = "/employee", method = RequestMethod.GET)
 public class EmployeeController {
     @Autowired
-    EmployeeService eeService;
+    EmployeePropertyService eeService;
     @Autowired
     PropertyDefinitionService propertyDefinitionService;
 
+    /*
+     * GET METHOD
+     */
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public Map<String, List<Property>> findAllProperty(@PathVariable String id)
             throws PropertyDefinitionNotFoundException {
@@ -36,8 +39,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/id/{id}/property/{property}/at/{date}", method = RequestMethod.GET)
     public Map<String, List<Property>> findGivenPropertyAtGivenDate(@PathVariable String id,
-            @PathVariable String property, @PathVariable String date)
-                    throws PropertyDefinitionNotFoundException {
+            @PathVariable String property, @PathVariable String date) throws PropertyDefinitionNotFoundException {
         return eeService.find(id.split(","), property.split(","), date);
     }
 
@@ -45,11 +47,16 @@ public class EmployeeController {
     public Map<String, List<Property>> findGivenPropertyAtGivenDate(@PathVariable String id,
             @PathVariable String property, @PathVariable String startdate, @PathVariable String enddate)
                     throws PropertyDefinitionNotFoundException {
-        throw new PropertyDefinitionNotFoundException("test");
-
-//        return eeService.find(id.split(","), property.split(","), startdate, enddate);
+        return eeService.find(id.split(","), property.split(","), startdate, enddate);
     }
 
-
+    /*
+     * PUT METHOD
+     */
+//    @RequestMapping(method = RequestMethod.PUT)
+//    public Map<String, List<Property>> findGivenPropertyAtGivenDate(@RequestBody)
+//            throws PropertyDefinitionNotFoundException {
+//        return eeService.find(id.split(","), property.split(","), startdate, enddate);
+//    }
 
 }

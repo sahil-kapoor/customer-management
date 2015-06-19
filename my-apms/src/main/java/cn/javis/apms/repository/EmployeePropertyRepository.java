@@ -2,11 +2,9 @@ package cn.javis.apms.repository;
 
 import java.util.List;
 
-import cn.javis.apms.domain.EmployeeProperty;
-import cn.javis.apms.repository.base.GenericRepository;
+import cn.javis.apms.domain.employee.EmployeeProperty;
 
-
-public interface EmployeeRepository extends GenericRepository<EmployeeProperty, Long> {
+public interface EmployeePropertyRepository {
 
     List<EmployeeProperty> find(String[] ids, String[] properties);
 
@@ -15,4 +13,6 @@ public interface EmployeeRepository extends GenericRepository<EmployeeProperty, 
     List<EmployeeProperty> find(String[] ids);
 
     List<EmployeeProperty> find(String[] ids, String[] properties, String startDate, String endDate);
+
+    List<EmployeeProperty> find(String[] ids, String date);
 }

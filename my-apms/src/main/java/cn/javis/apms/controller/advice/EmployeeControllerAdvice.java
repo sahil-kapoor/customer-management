@@ -1,4 +1,4 @@
-package cn.javis.apms.controller;
+package cn.javis.apms.controller.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

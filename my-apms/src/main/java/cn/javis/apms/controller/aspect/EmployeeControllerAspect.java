@@ -1,4 +1,4 @@
-package cn.javis.apms.controller;
+package cn.javis.apms.controller.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;

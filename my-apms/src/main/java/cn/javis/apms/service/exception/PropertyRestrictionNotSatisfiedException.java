@@ -1,5 +1,9 @@
 package cn.javis.apms.service.exception;
 
+/**
+ * Throws when property created or updated,
+ * if such restriction is not satisfied.
+ * */
 public class PropertyRestrictionNotSatisfiedException extends Exception {
 
     /**

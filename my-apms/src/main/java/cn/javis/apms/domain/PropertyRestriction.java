@@ -1,21 +1,25 @@
 package cn.javis.apms.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
-@Table(name = "myapms_employee_property_restriction")
+@Table(name = "myapms_property_restriction")
 @Data 
-public class EmployeePropertyRestriction {
+public class PropertyRestriction implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6228320666485241754L;
+
     @Id
-    @GeneratedValue
     @Column(name = "ID")
     private Long id; // primary key in database
 

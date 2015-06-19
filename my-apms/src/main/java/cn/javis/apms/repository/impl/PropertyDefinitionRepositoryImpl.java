@@ -10,7 +10,7 @@ import cn.javis.apms.repository.PropertyDefinitionRepository;
 import cn.javis.apms.repository.base.HibernateBaseRepository;
 
 @Repository
-public class PropertyDefinitionRepositoryImpl extends HibernateBaseRepository<PropertyDefinition, Long> implements PropertyDefinitionRepository {
+public class PropertyDefinitionRepositoryImpl extends HibernateBaseRepository<PropertyDefinition> implements PropertyDefinitionRepository {
 
     protected PropertyDefinitionRepositoryImpl() {
         super(PropertyDefinition.class);

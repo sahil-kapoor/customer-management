@@ -1,5 +1,9 @@
 package cn.javis.apms.service.exception;
 
+/**
+ * Throws accessing property definition,
+ * if no property definition with given property name was found
+ * */
 public class PropertyDefinitionNotFoundException extends Exception {
 
     /**
