@@ -16,9 +16,9 @@ import org.hibernate.annotations.TypeDef;
 import cn.javis.apms.repository.base.DateTimeUserType;
 
 @Entity
-@Table(name = "myapms_employee")
+@Table(name = "myapms_employee_property")
 @NoArgsConstructor
-@TypeDef(defaultForType = LocalDate.class, name = "DateUserType", typeClass = DateTimeUserType.class)
+@TypeDef(defaultForType = LocalDate.class, name = "LocalDateUserType", typeClass = DateTimeUserType.class)
 public class EmployeeProperty {
 
     @Id
