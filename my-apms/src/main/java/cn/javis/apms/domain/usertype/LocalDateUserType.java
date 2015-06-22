@@ -1,4 +1,4 @@
-package cn.javis.apms.repository.base;
+package cn.javis.apms.domain.usertype;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -12,7 +12,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.UserType;
 
-public class DateTimeUserType implements UserType {
+public class LocalDateUserType implements UserType {
 
     @Override
     public int[] sqlTypes() {
@@ -50,7 +50,7 @@ public class DateTimeUserType implements UserType {
     public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)
             throws HibernateException, SQLException {
         if (value == null) {
-            st.setNull(index, Types.TIMESTAMP);
+            st.setNull(index, Types.DATE);
         } else {
             LocalDate localDate = (LocalDate) value;
             Date date = Date.valueOf(localDate);

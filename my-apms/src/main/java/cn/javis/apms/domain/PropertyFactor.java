@@ -11,12 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
 @Table(name = "myapms_property_factor")
+@SecondaryTable(name = "myapms_property_condition")
 @Data
 public class PropertyFactor implements Serializable {
     /**

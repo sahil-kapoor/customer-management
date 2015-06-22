@@ -1,6 +1,5 @@
 package cn.javis.apms.domain.employee;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -8,24 +7,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.Type;
 
 import cn.javis.apms.domain.base.BaseProperty;
-import cn.javis.apms.repository.base.DateTimeUserType;
 
 @Entity
 @Table(name = "myapms_employee_property")
-@Data
-@TypeDef(defaultForType = LocalDate.class, name = "LocalDateUserType", typeClass = DateTimeUserType.class)
-public class EmployeeProperty extends BaseProperty implements Serializable {
+@NoArgsConstructor
+@Getter
+@Setter
+public class EmployeeProperty extends BaseProperty {
 
     /**
      * 
      */
-    private static final long serialVersionUID = -7519035295056826448L;
+    private static final long serialVersionUID = 1213238507117112000L;
 
     @Id
     @GeneratedValue
@@ -35,17 +38,21 @@ public class EmployeeProperty extends BaseProperty implements Serializable {
     @Column(name = "EMPLOYEE_ID")
     private String employeeId;
 
+    @Type(type = "localDateUserType")
+    @Temporal(TemporalType.DATE)
     @Column(name = "START_DATE")
     private LocalDate startDate;
 
+    @Temporal(TemporalType.DATE)
+    @Type(type = "localDateUserType")
     @Column(name = "END_DATE")
     private LocalDate endDate;
 
-//    @Column(name = "PROPERTY_NAME")
-//    private String propertyName;
-//
-//    @Column(name = "PROPERTY_VALUE")
-//    private String propertyValue;
+    // @Column(name = "PROPERTY_NAME")
+    // private String propertyName;
+    //
+    // @Column(name = "PROPERTY_VALUE")
+    // private String propertyValue;
 
     @Column(name = "CONDITION_ID")
     private Long conditionId;
