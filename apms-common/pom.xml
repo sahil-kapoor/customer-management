@@ -11,7 +11,8 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <apms.version>0.0.1-SNAPSHOT</apms.version>
+    <java.version>1.8</java.version>
   </properties>
 
   <dependencies>

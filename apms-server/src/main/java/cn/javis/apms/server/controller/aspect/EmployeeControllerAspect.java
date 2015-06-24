@@ -23,7 +23,7 @@ public class EmployeeControllerAspect {
 //    public void find(String id, String property, String date) {
 //    };
 
-    @Pointcut("execution( * cn.javis.apms.controller.EmployeeController.findGivenPropertyAtGivenDate(String, String, String, String)) && args(ids, property,startDate, endDate)")
+    @Pointcut("execution( * cn.javis.apms.server.controller.EmployeeController.findGivenPropertyAtGivenDate(String, String, String, String)) && args(ids, property,startDate, endDate)")
     public void find(String ids, String property, String startDate, String endDate) {
     };
 

@@ -53,4 +53,5 @@ public final class StringHelper {
         }
         return bytes;
     }
+
 }

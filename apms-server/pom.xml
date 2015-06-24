@@ -43,6 +43,7 @@
 
 
   <properties>
+    <apms.version>0.0.1-SNAPSHOT</apms.version>
     <java.version>1.8</java.version>
     <spring.version>4.1.6.RELEASE</spring.version>
     <hibernate.version>4.3.10.Final</hibernate.version>
@@ -53,6 +54,14 @@
 
 
   <dependencies>
+
+    <!-- APMS -->
+    <dependency>
+      <groupId>cn.javis.apms</groupId>
+      <artifactId>apms-common</artifactId>
+      <version>${apms.version}</version>
+    </dependency>
+
     <!-- Spring -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -97,7 +106,7 @@
       <artifactId>aspectjweaver</artifactId>
       <version>${aspectJ.version}</version>
     </dependency>
-    
+
     <!-- Hibernate -->
     <dependency>
       <groupId>org.hibernate</groupId>

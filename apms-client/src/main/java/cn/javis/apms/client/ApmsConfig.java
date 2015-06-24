@@ -2,7 +2,7 @@ package cn.javis.apms.client;
 
 public enum ApmsConfig {
 
-    SERVER_PORT("server.port"), SERVER_URL("server.url");
+    SERVER_URL("server.url");
 
     private String rawStr;
 
