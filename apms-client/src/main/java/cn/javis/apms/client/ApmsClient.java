@@ -1,11 +1,12 @@
 package cn.javis.apms.client;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
@@ -23,7 +24,8 @@ public final class ApmsClient {
         readConfig();
 
         CloseableHttpClient client = HttpClients.createDefault();
-        HttpGet request = new HttpGet("http://" + configs.get(ApmsConfig.SERVER_URL) + "/apms-server/randomToken/");
+        HttpGet request = new HttpGet("http://" + configs.get(ApmsConfig.SERVER_URL)
+                + "/apms-server/token?username=testmd5");
 
         try {
             HttpResponse response = client.execute(request);
@@ -31,13 +33,14 @@ public final class ApmsClient {
             int statusCode = response.getStatusLine().getStatusCode();
             switch (statusCode) {
             case HttpStatus.SC_OK: {
-                BufferedInputStream input = new BufferedInputStream(entity.getContent());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+                List<Byte> byteList = new ArrayList<Byte>();
                 StringBuilder sb = new StringBuilder();
-                byte b;
-                while ((b = (byte) input.read()) != -1) {
-                    sb.append(String.valueOf(b));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
                 }
-                System.out.println(sb.toString());
+                // TODO: parser as JSON
             }
             case HttpStatus.SC_NOT_FOUND: {
                 break;

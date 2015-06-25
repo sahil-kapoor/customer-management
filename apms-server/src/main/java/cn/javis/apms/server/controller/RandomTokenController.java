@@ -16,10 +16,10 @@ public class RandomTokenController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Map<String, String> getRandomToken(@RequestParam(value = "username") String usernameMd5) {
         String randomToken = RandomTokenGenerator.generate();
+        System.out.println(randomToken);
         String username = "test";
         Map<String, String> result = new HashMap<String, String>();
         result.put(username, randomToken);
         return result;
-
     }
 }
