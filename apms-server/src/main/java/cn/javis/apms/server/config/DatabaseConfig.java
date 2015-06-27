@@ -42,7 +42,7 @@ public class DatabaseConfig {
     @Bean(name = "sessionFactory")
     public SessionFactory sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-        sessionBuilder.scanPackages("cn.javis.apms.domain");
+        sessionBuilder.scanPackages("cn.javis.apms.server.domain");
         sessionBuilder.addProperties(getHibernateProperties());
         return sessionBuilder.buildSessionFactory();
     }

@@ -14,7 +14,7 @@ import cn.javis.apms.common.helper.StringHelper;
 public class AesEncrypt {
 
     private static byte[] encrypt(String unCoded, String strKey) {
-        SecretKeySpec key = new SecretKeySpec(StringHelper.toMd5(strKey), "AES");
+        SecretKeySpec key = new SecretKeySpec(StringHelper.hex2Byte(StringHelper.toMd5(strKey)), "AES");
         try {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, key);
@@ -34,7 +34,7 @@ public class AesEncrypt {
     }
 
     private static byte[] decrypt(byte[] coded, String strKey) {
-        SecretKeySpec key = new SecretKeySpec(StringHelper.toMd5(strKey), "AES");
+        SecretKeySpec key = new SecretKeySpec(StringHelper.hex2Byte(StringHelper.toMd5(strKey)), "AES");
         try {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, key);
@@ -60,12 +60,12 @@ public class AesEncrypt {
      * 
      * The return value can be passed to `strKey` of encrypt/decrypt function.
      */
-    public String composeAccessKey(String usernameMd5, String randomNumberMd5, String passwordMd5) {
+    public static String composeAccessKey(String usernameMd5, String randomKeyMd5, String passwordMd5) {
         StringBuilder sb = new StringBuilder();
         sb.append(usernameMd5);
-        sb.append(randomNumberMd5);
+        sb.append(randomKeyMd5);
         sb.append(passwordMd5);
-        return sb.toString();
+        return StringHelper.toMd5(sb.toString());
     }
 
     public static void main(String[] args) throws InterruptedException {

@@ -6,8 +6,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import cn.javis.apms.service.PropertyDefinitionService;
-import cn.javis.apms.service.exception.PropertyDefinitionNotFoundException;
+import cn.javis.apms.server.service.PropertyDefinitionService;
+import cn.javis.apms.server.service.exception.PropertyDefinitionNotFoundException;
 
 @Aspect
 @Component

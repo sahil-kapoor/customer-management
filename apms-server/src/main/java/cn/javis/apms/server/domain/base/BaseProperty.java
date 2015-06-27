@@ -12,7 +12,6 @@ import javax.persistence.TemporalType;
 
 import lombok.Data;
 
-import org.hibernate.annotations.Columns;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.Type;
@@ -44,12 +43,13 @@ public abstract class BaseProperty implements Serializable {
     @Generated(GenerationTime.ALWAYS)
     protected LocalTime updateTime;
 
-    @Type(type = "userInfoCompositeUserType")
-    @Columns(columns = { @Column(name = "CREATER"), @Column(name = "CREATER_TERMINAL") })
-    private UserInfo creater;
+//    @Type(type = "userInfoCompositeUserType")
+//    @Columns(columns = { @Column(name = "CREATER"), @Column(name = "CREATER_TERMINAL") })
+//    private UserInfo creater;
 
-    @Type(type = "userInfoCompositeUserType")
-    @Columns(columns = { @Column(name = "UPDATER"), @Column(name = "UPDATER_TERMINAL") })
-    private UserInfo updater;
+    // @Type(type = "userInfoCompositeUserType")
+    // @Columns(columns = { @Column(name = "UPDATER"), @Column(name =
+    // "UPDATER_TERMINAL") })
+    // private UserInfo updater;
 
 }

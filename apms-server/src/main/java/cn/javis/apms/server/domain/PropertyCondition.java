@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import lombok.Data;
 import cn.javis.apms.server.domain.condition.Condition;
 import cn.javis.apms.server.helper.PropertyDefinitionEvaluator;
-import cn.javis.apms.service.exception.PropertyDefinitionNotFoundException;
+import cn.javis.apms.server.service.exception.PropertyDefinitionNotFoundException;
 
 @Entity
 @Table(name = "myapms_property_condition")

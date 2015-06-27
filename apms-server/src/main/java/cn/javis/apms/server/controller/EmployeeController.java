@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.javis.apms.server.domain.property.Property;
-import cn.javis.apms.service.EmployeePropertyService;
-import cn.javis.apms.service.PropertyDefinitionService;
-import cn.javis.apms.service.exception.PropertyDefinitionNotFoundException;
+import cn.javis.apms.server.service.EmployeePropertyService;
+import cn.javis.apms.server.service.PropertyDefinitionService;
+import cn.javis.apms.server.service.exception.PropertyDefinitionNotFoundException;
 
 @RestController
 @RequestMapping(value = "/employee", method = RequestMethod.GET)
@@ -33,16 +33,16 @@ public class EmployeeController {
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public Map<String, List<Property>> findAllProperty(@PathVariable String id, HttpServletRequest request,
             HttpSession session) throws PropertyDefinitionNotFoundException {
-
-        System.out.println("Http Session: " + session.getId() + "[" + session.isNew() + "]");
-        System.out.println("remote host: " + request.getRemoteHost());
-        System.out.println("remote addr: " + request.getRemoteAddr());
-        System.out.println("remote port: " + request.getRemotePort());
-        System.out.println("remote user: " + request.getRemoteUser());
-        System.out.println("remote session: " + request.getRequestedSessionId());
-        System.out.println("request header: " + request.getHeader("x-forwarded-for"));
-        session.invalidate();
-        return eeService.find(id.split(","));
+        throw new PropertyDefinitionNotFoundException("test");
+//        System.out.println("Http Session: " + session.getId() + "[" + session.isNew() + "]");
+//        System.out.println("remote host: " + request.getRemoteHost());
+//        System.out.println("remote addr: " + request.getRemoteAddr());
+//        System.out.println("remote port: " + request.getRemotePort());
+//        System.out.println("remote user: " + request.getRemoteUser());
+//        System.out.println("remote session: " + request.getRequestedSessionId());
+//        System.out.println("request header: " + request.getHeader("x-forwarded-for"));
+//        session.invalidate();
+//        return eeService.find(id.split(","));
     }
 
     @RequestMapping(value = "/id/{id}/property/{property}", method = RequestMethod.GET)

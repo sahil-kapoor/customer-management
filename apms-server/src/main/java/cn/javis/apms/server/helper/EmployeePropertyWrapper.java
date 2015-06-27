@@ -8,7 +8,7 @@ import java.util.Map;
 import cn.javis.apms.server.domain.employee.EmployeeProperty;
 import cn.javis.apms.server.domain.property.Property;
 import cn.javis.apms.server.domain.property.PropertyValue;
-import cn.javis.apms.service.exception.PropertyDefinitionNotFoundException;
+import cn.javis.apms.server.service.exception.PropertyDefinitionNotFoundException;
 
 
 public final class EmployeePropertyWrapper {

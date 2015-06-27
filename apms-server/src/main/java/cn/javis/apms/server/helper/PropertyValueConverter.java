@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 import cn.javis.apms.server.domain.PropertyDefinition;
 import cn.javis.apms.server.domain.employee.EmployeeProperty;
 import cn.javis.apms.server.domain.property.PropertyValue;
-import cn.javis.apms.service.PropertyDefinitionService;
-import cn.javis.apms.service.exception.PropertyDefinitionNotFoundException;
+import cn.javis.apms.server.service.PropertyDefinitionService;
+import cn.javis.apms.server.service.exception.PropertyDefinitionNotFoundException;
 
 @Component
 public final class PropertyValueConverter {

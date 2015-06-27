@@ -9,6 +9,6 @@ public final class RandomTokenGenerator {
     public static String generate() {
         Random random = new Random(LocalTime.now().toNanoOfDay());
         String randomNumber = String.valueOf(random.nextLong());
-        return StringHelper.byte2Hex(StringHelper.toMd5(randomNumber));
+        return StringHelper.toMd5(randomNumber);
     }
 }

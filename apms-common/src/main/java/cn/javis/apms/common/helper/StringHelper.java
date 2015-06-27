@@ -8,11 +8,11 @@ public final class StringHelper {
     /*
      * generate 128bit Md5 Message Digest
      */
-    public static byte[] toMd5(String content) {
+    public static String toMd5(String content) {
         MessageDigest md5;
         try {
             md5 = MessageDigest.getInstance("MD5");
-            return md5.digest(content.getBytes());
+            return byte2Hex(md5.digest(content.getBytes()));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
-@Table(name = "apms_userinfo")
+@Table(name = "myapms_userinfo")
+@Data
 public class UserInfo implements Serializable {
 
     /**
@@ -22,15 +25,16 @@ public class UserInfo implements Serializable {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "USERNAME")
+    @Column(name = "USERNAME", nullable = false)
     private String username;
 
-    @Column(name = "USERNAME_MD5")
+    @Column(name = "USERNAME_MD5", nullable = false)
     private String usernameMd5;
 
-    @Column(name = "PASSWORD_MD5")
+    @Column(name = "PASSWORD_MD5", nullable = false)
     private String passwordMd5;
 
-    @Column(name = "ACCESS_KEY")
+    @Column(name = "ACCESS_KEY", nullable = false)
     private String accessKey;
+
 }
