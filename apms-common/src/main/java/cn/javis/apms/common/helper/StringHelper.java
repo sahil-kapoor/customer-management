@@ -3,6 +3,8 @@ package cn.javis.apms.common.helper;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import cn.javis.apms.common.helper.exception.StringWrongFormatException;
+
 public final class StringHelper {
 
     /*
@@ -37,9 +39,12 @@ public final class StringHelper {
     /*
      * convert String in Hex form to byte[]
      */
-    public static byte[] hex2Byte(String hex) {
+    public static byte[] hex2Byte(String hex) throws StringWrongFormatException {
         if (hex.isEmpty())
             return null;
+        if (hex.length() % 2 != 0) {
+            throw new StringWrongFormatException();
+        }
         byte[] bytes = new byte[hex.length() / 2];
         try {
             for (int i = 0; i < hex.length(); i = i + 2) {
@@ -49,7 +54,7 @@ public final class StringHelper {
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            bytes = null;
+            throw new StringWrongFormatException();
         }
         return bytes;
     }

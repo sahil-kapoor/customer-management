@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import cn.javis.apms.common.DataType;
 import lombok.Data;
 
 @Entity

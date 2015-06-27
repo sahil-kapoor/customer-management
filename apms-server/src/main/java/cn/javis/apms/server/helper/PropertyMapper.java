@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import cn.javis.apms.server.domain.DataType;
+import cn.javis.apms.common.DataType;
 
 public class PropertyMapper {
     private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");

@@ -1,19 +1,22 @@
-package cn.javis.apms.server.domain.crypt;
+package cn.javis.apms.server.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
-@Table(name = "myapms_userinfo")
+@Table(name = "myapms_authority_info")
 @Data
-public class UserInfo implements Serializable {
+public class AuthorityInfo implements Serializable {
 
     /**
      * 
@@ -36,5 +39,9 @@ public class UserInfo implements Serializable {
 
     @Column(name = "ACCESS_KEY", nullable = false)
     private String accessKey;
+
+    @OneToOne(cascade = { CascadeType.ALL })
+    @JoinColumn(name = "USER_INFO")
+    private UserInfo userInfo = new UserInfo();
 
 }

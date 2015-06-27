@@ -1,4 +1,4 @@
-package cn.javis.apms.server.domain;
+package cn.javis.apms.common;
 
 
 public enum DataType {
