@@ -18,6 +18,7 @@ import cn.javis.apms.server.domain.UserInfo;
 import cn.javis.apms.server.dto.ReturnInfo;
 import cn.javis.apms.server.helper.AesCryptUtils;
 import cn.javis.apms.server.service.AuthorityInfoService;
+import cn.javis.apms.server.service.exception.AuthorityInfoExpiredException;
 import cn.javis.apms.server.service.exception.AuthorityInfoNotExistException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -31,7 +32,7 @@ public class CustomerInfoController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getCustomerInfo(@RequestParam(value = "usernameMd5") String usernameMd5)
             throws AuthorityInfoNotExistException, JsonProcessingException, CryptionFailException,
-            StringWrongFormatException {
+            StringWrongFormatException, AuthorityInfoExpiredException {
         AuthorityInfo authoInfo = authorityInfoService.getUser(usernameMd5);
         UserInfo userInfo = authoInfo.getUserInfo();
         List<Customer> customers = userInfo.getCustomers();
@@ -42,7 +43,7 @@ public class CustomerInfoController {
     @RequestMapping(value = "/single", method = RequestMethod.POST)
     public ReturnInfo updateCustomerInfo(@RequestParam(value = "usernameMd5") String usernameMd5,
             @RequestBody String content) throws AuthorityInfoNotExistException, CryptionFailException,
-            StringWrongFormatException {
+            StringWrongFormatException, AuthorityInfoExpiredException {
         AuthorityInfo authoInfo = authorityInfoService.getUser(usernameMd5);
         UserInfo userInfo = authoInfo.getUserInfo();
         Customer customer = AesCryptUtils.decrypt(content, Customer.class, authoInfo);
@@ -54,7 +55,7 @@ public class CustomerInfoController {
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public ReturnInfo updateCustomerInfoList(@RequestParam(value = "usernameMd5") String usernameMd5,
             @RequestBody String content) throws AuthorityInfoNotExistException, CryptionFailException,
-            StringWrongFormatException {
+            StringWrongFormatException, AuthorityInfoExpiredException {
         AuthorityInfo authoInfo = authorityInfoService.getUser(usernameMd5);
         UserInfo userInfo = authoInfo.getUserInfo();
         List<Customer> customers = AesCryptUtils.decryptList(content, Customer.class, authoInfo);

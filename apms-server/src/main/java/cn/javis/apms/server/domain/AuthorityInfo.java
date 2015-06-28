@@ -1,6 +1,7 @@
 package cn.javis.apms.server.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,8 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "myapms_authority_info")
@@ -39,6 +44,11 @@ public class AuthorityInfo implements Serializable {
 
     @Column(name = "ACCESS_KEY", nullable = false)
     private String accessKey;
+
+    @Column(name = "ACCESS_KEY_LASTEST")
+    @Type(type = "localDateTimeUserType")
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime accessKeyLatest = LocalDateTime.now();
 
     @OneToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "USER_INFO")

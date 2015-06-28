@@ -17,6 +17,7 @@ import cn.javis.apms.server.domain.UserInfo;
 import cn.javis.apms.server.dto.ReturnInfo;
 import cn.javis.apms.server.helper.AesCryptUtils;
 import cn.javis.apms.server.service.AuthorityInfoService;
+import cn.javis.apms.server.service.exception.AuthorityInfoExpiredException;
 import cn.javis.apms.server.service.exception.AuthorityInfoNotExistException;
 
 @RestController
@@ -27,7 +28,7 @@ public class UserInfoController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getUserInfo(@RequestParam(value = "usernameMd5") String usernameMd5)
-            throws AuthorityInfoNotExistException, IOException, CryptionFailException, StringWrongFormatException {
+            throws AuthorityInfoNotExistException, IOException, CryptionFailException, StringWrongFormatException, AuthorityInfoExpiredException {
         AuthorityInfo authoInfo = authorityService.getUser(usernameMd5);
         UserInfo userInfo = authoInfo.getUserInfo();
         String result = AesCryptUtils.encrypt(userInfo, authoInfo);
@@ -36,7 +37,7 @@ public class UserInfoController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ReturnInfo updateUserInfo(@RequestParam(value = "usernameMd5") String usernameMd5,
-            @RequestBody String content) throws AuthorityInfoNotExistException, IOException, CryptionFailException, StringWrongFormatException {
+            @RequestBody String content) throws AuthorityInfoNotExistException, IOException, CryptionFailException, StringWrongFormatException, AuthorityInfoExpiredException {
         AuthorityInfo authoInfo = authorityService.getUser(usernameMd5);
         UserInfo oldUserInfo = authoInfo.getUserInfo();
         UserInfo userInfo = AesCryptUtils.decrypt(content, UserInfo.class, authoInfo);
