@@ -8,7 +8,7 @@ public interface AuthorityInfoRepository {
 
     void save(AuthorityInfo authorityInfo);
 
-    void update(AuthorityInfo authorityInfo);
+    AuthorityInfo update(AuthorityInfo authorityInfo);
 
     void delete(AuthorityInfo authorityInfo);
 

@@ -15,7 +15,7 @@ import cn.javis.apms.common.helper.exception.StringWrongFormatException;
 import cn.javis.apms.server.domain.AuthorityInfo;
 import cn.javis.apms.server.domain.UserInfo;
 import cn.javis.apms.server.dto.ReturnInfo;
-import cn.javis.apms.server.helper.AesEncryptUtils;
+import cn.javis.apms.server.helper.AesCryptUtils;
 import cn.javis.apms.server.service.AuthorityInfoService;
 import cn.javis.apms.server.service.exception.AuthorityInfoNotExistException;
 
@@ -30,7 +30,7 @@ public class UserInfoController {
             throws AuthorityInfoNotExistException, IOException, CryptionFailException, StringWrongFormatException {
         AuthorityInfo authoInfo = authorityService.getUser(usernameMd5);
         UserInfo userInfo = authoInfo.getUserInfo();
-        String result = AesEncryptUtils.encrypt(userInfo, authoInfo);
+        String result = AesCryptUtils.encrypt(userInfo, authoInfo);
         return result;
     }
 
@@ -39,7 +39,7 @@ public class UserInfoController {
             @RequestBody String content) throws AuthorityInfoNotExistException, IOException, CryptionFailException, StringWrongFormatException {
         AuthorityInfo authoInfo = authorityService.getUser(usernameMd5);
         UserInfo oldUserInfo = authoInfo.getUserInfo();
-        UserInfo userInfo = AesEncryptUtils.decrypt(content, UserInfo.class, authoInfo);
+        UserInfo userInfo = AesCryptUtils.decrypt(content, UserInfo.class, authoInfo);
         oldUserInfo.update(userInfo);
         authorityService.updateUser(authoInfo);
         return new ReturnInfo(ReturnCode.SUCCESS);

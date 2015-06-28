@@ -4,9 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import cn.javis.apms.common.ReturnCode;
 
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 public class ReturnInfo {
+
+    public static ReturnInfo newInstance(ReturnCode code) {
+        return new ReturnInfo(code);
+    }
+
     private final ReturnCode code;
 
 }

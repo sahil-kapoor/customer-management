@@ -15,13 +15,13 @@ import cn.javis.apms.server.service.exception.AuthorityInfoNotExistException;
 @Service
 public class AuthorityInfoSeriviceImpl implements AuthorityInfoService {
 
-    final private AuthorityInfoRepository userInfoRepository;
+    final private AuthorityInfoRepository authoInfoRepository;
 
     Map<String, AuthorityInfo> userInfoMapByUsernameMd5 = new HashMap<String, AuthorityInfo>();
 
     @Autowired
     public AuthorityInfoSeriviceImpl(AuthorityInfoRepository userInfoRepository) {
-        this.userInfoRepository = userInfoRepository;
+        this.authoInfoRepository = userInfoRepository;
         for (AuthorityInfo authorityInfo : userInfoRepository.fetchAll()) {
             userInfoMapByUsernameMd5.put(authorityInfo.getUsernameMd5(), authorityInfo);
         }
@@ -32,20 +32,20 @@ public class AuthorityInfoSeriviceImpl implements AuthorityInfoService {
         if (!isUserInfoValid(authorityInfo)) {
             throw new AuthorityInfoDuplicatedException();
         }
-        userInfoRepository.save(authorityInfo);
+        authoInfoRepository.save(authorityInfo);
         userInfoMapByUsernameMd5.put(authorityInfo.getUsernameMd5(), authorityInfo);
     }
 
     @Override
     public void updateUser(AuthorityInfo authorityInfo) {
-        userInfoRepository.update(authorityInfo);
+        authorityInfo = authoInfoRepository.update(authorityInfo);
         userInfoMapByUsernameMd5.put(authorityInfo.getUsernameMd5(), authorityInfo);
 
     }
 
     @Override
     public void deleteUser(AuthorityInfo authorityInfo) {
-        userInfoRepository.delete(authorityInfo);
+        authoInfoRepository.delete(authorityInfo);
         userInfoMapByUsernameMd5.remove(authorityInfo.getUsernameMd5());
     }
 
@@ -53,7 +53,7 @@ public class AuthorityInfoSeriviceImpl implements AuthorityInfoService {
     public void updateAccessKey(String usernameMd5, String newAccessKey) throws AuthorityInfoNotExistException {
         AuthorityInfo authorityInfo = getUser(usernameMd5);
         authorityInfo.setAccessKey(newAccessKey);
-        userInfoRepository.update(authorityInfo);
+        authoInfoRepository.update(authorityInfo);
     }
 
     @Override

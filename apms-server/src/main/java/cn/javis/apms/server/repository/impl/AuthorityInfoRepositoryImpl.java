@@ -26,8 +26,8 @@ public class AuthorityInfoRepositoryImpl extends HibernateBaseRepository<Authori
 
     @Override
     @Transactional
-    public void update(AuthorityInfo authorityInfo) {
-        currentSession().merge(authorityInfo);
+    public AuthorityInfo update(AuthorityInfo authorityInfo) {
+        return (AuthorityInfo) currentSession().merge(authorityInfo);
     }
 
     @Override

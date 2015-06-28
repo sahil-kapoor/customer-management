@@ -49,7 +49,7 @@ public class AuthorityInfoController {
     }
 
     @RequestMapping(value = "/signin")
-    public Map<String, String> signin(@RequestParam(value = "username") String usernameMd5,
+    public Map<String, String> signin(@RequestParam(value = "usernameMd5") String usernameMd5,
             @RequestParam(value = "passwordMd5") String passwordMd5) throws AuthorityInfoNotExistException,
             AuthorityInfoWrongPasswordException {
 
